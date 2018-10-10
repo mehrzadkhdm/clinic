@@ -1,0 +1,526 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<messages xmlns:if="Wt.WTemplate.conditions">
+  <message id="template.registration">
+    <div class="Wt-form Wt-auth-registration">
+      <h2>${tr:Wt.Auth.registration-form-title}</h2>
+      <p>${tr:Wt.Auth.registration-form-info}</p>
+
+      ${password-description}
+
+      <div class="Wt-fields">
+        ${<if:user-name>}
+        <label for="${id:user-name}">${user-name-label}
+          ${user-name-info class="Wt-info"}
+          ${confirm-is-you class="Wt-info"}
+        </label>
+        ${user-name}
+        ${</if:user-name>}
+
+        ${<if:choose-password>}
+        <label for="${id:choose-password}">${tr:Wt.Auth.choose-password}
+          ${choose-password-info class="Wt-info"}
+        </label>
+        ${choose-password}
+
+        <label for="${id:repeat-password}">${tr:Wt.Auth.repeat-password}
+          ${repeat-password-info class="Wt-info"}
+        </label>
+        ${repeat-password}
+        ${</if:choose-password>}
+
+        ${<if:email>}
+        <label for="${id:email}">${tr:Wt.Auth.email}
+          ${email-info class="Wt-info"}
+        </label>
+        ${email}
+        ${</if:email>}
+
+        <label for="${id:practice-name}">Practice Name:
+        </label>
+        ${practice-name}
+
+        <label for="${id:practice-zip}">Practice Zip Code:
+        </label>
+        ${practice-zip}
+
+        <label for="${id:practice-drfirstname}">Doctor's First Name:
+        </label>
+        ${practice-drfirstname}
+
+        <label for="${id:practice-drlastname}">Doctor's Last Name:
+        </label>
+        ${practice-drlastname}
+
+        <label for="${id:practice-npi}">Practice Phone Number:
+        </label>
+        ${practice-npi}
+
+        <label for="${id:practice-email}">Practice Email Address:
+        </label>
+        ${practice-email}
+
+        <label for="${id:practice-specialty}">Doctor's Specialty:
+        </label>
+        ${practice-specialty}
+
+
+      </div>
+
+      <div class="Wt-buttons">
+        ${ok-button} ${cancel-button}
+      </div>
+    </div>
+  </message>
+
+  <message id="template.referral">
+    <div class="container">
+      <div class="row">
+      </div>
+      <h1 align="center">Referral Form</h1>
+      <p align="center">PH: (562) 622-1002 | FAX:(562) 622-1058</p>
+      <br />
+      <div class="container">
+        <h4>____________________________________________________________________</h4>
+        <p style="padding: 2px; margin: 2px;">Practice Name: <strong>${pname}</strong></p>
+        <p style="padding: 2px; margin: 2px;">Dr's Name: <strong>${pdrfirst} ${pdrlast}</strong></p>
+        <p style="padding: 2px; margin: 2px;">Dr's Specialty: <strong>${pspec}</strong></p>
+        <p style="padding: 2px; margin: 2px;">Practice NPI: <strong>${pnpi}</strong></p>
+        <p style="padding: 2px; margin: 2px;">Practice Email: <strong>${pemail}</strong></p>
+        <p style="padding: 2px; margin: 2px;">Practice Zip Code: <strong>${pzip}</strong></p>
+        <p style="padding: 2px; margin: 2px;">Patient First Name: <strong>${ptfirst}</strong></p>
+        <p style="padding: 2px; margin: 2px;">Patient Last Name: <strong>${ptlast}</strong></p>
+        <p style="padding: 2px; margin: 2px;">Patient Address:</p>
+        <p style="padding: 2px; margin: 2px;"><strong>${ptaddr1}</strong></p>
+        <p style="padding: 2px; margin: 2px;"><strong>${ptaddr2}</strong></p>
+        <p style="padding: 2px; margin: 2px;">Patient City: <strong>${ptcity}</strong></p>
+        <p style="padding: 2px; margin: 2px;">Patient Zip: <strong>${ptzip}</strong></p>
+        <p style="padding: 2px; margin: 2px;">Patient Home Phone: <strong>${pthome}</strong></p>
+        <p style="padding: 2px; margin: 2px;">Patient Cell Phone: <strong>${ptcell}</strong></p>
+        <p style="padding: 2px; margin: 2px;">Patient Date of Birth: <strong>${ptdob}</strong></p>
+        <p style="padding: 2px; margin: 2px;">Patient Gender: <strong>${ptgender}</strong></p>
+        <p style="padding: 2px; margin: 2px;">Patient Diagnostic: <strong>${rdiag}</strong></p>
+        <p style="padding: 2px; margin: 2px;">Patient Overnight Study: <strong>${rover}</strong></p>
+        <p style="padding: 2px; margin: 2px;">Home Sleep Study: <strong>${rhome}</strong></p>
+        <p style="padding: 2px; margin: 2px;">Other Sleep Study: <strong>${rother}</strong></p>
+        <p style="padding: 2px; margin: 2px;">Consultation Authorization: <strong>${rauth}</strong></p>
+        <h4>SLEEP STUDY ORDER WAS ELECTRONICALLY SIGNED</h4>
+        <p style="padding: 2px; margin: 2px;">Dr's Full Name (Hand Typed): ${signame}</p>
+        <p style="padding: 2px; margin: 2px;">Dr's Email (Hand Typed): ${sigemail}</p>
+        <p style="padding: 2px; margin: 2px;">Hand-Selected Date: ${sigdate}</p>
+      </div>
+    </div>
+  </message>
+
+  <message id="template.PracticeApp">
+    <div class="custom-header">
+      <div class="inside-header">
+        <span class="header-unitedphone">Questions? Call our office at 562 622 1002</span>
+      </div>
+    </div>
+    <nav class="navbar navbar-default navbar-fixed-top practice-app-navbar">
+      <div class="container-fluid practice-app-nav-container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#clincore-collapse" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <img class="usc-logo-new" src="../images/logo-physicians.png"/>${brand}
+        </div>
+
+        <div class="collapse navbar-collapse" id="clincore-collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li>${settings}</li>
+            <li><div class="navbar-form">${auth-widget}</div></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="header-space container-fluid">
+      <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar practice-sidebar">${sidebar}</div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">${main}</div>
+      </div>
+    </div>
+    <div class="custom-footer">
+      <div class="inside-footer">
+        <span class="footer-copyright">Copyright 2016 United Sleep Centers</span>
+        <span class="footer-pes7">Powered By <a href="http://pes7.com/">PES7 Healthcare Technology Solutions</a></span>
+      </div>
+    </div>
+  </message>
+
+  <message id="template.StaffApp">
+    <div class="custom-header">
+      <div class="inside-header">
+        <span class="header-unitedphone">Questions? Call our office at 562 622 1002</span>
+      </div>
+    </div>
+    <nav class="navbar navbar-default navbar-fixed-top practice-app-navbar">
+      <div class="container-fluid practice-app-nav-container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#clincore-collapse" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <img class="usc-logo-new" src="../images/logo-physicians.png"/>${brand}
+        </div>
+
+        <div class="collapse navbar-collapse" id="clincore-collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><div class="navbar-form">${auth-widget}</div></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="header-space container-fluid">
+      <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar practice-sidebar">${sidebar}</div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">${main}</div>
+      </div>
+    </div>
+    <div class="custom-footer">
+      <div class="inside-footer">
+        <span class="footer-copyright">Copyright 2016 United Sleep Centers</span>
+        <span class="footer-pes7">Powered By <a href="http://pes7.com/">PES7 Healthcare Technology Solutions</a></span>
+      </div>
+    </div>
+  </message>
+
+  <message id="template.PracticeLogin">
+    <div class="custom-header">
+      <div class="inside-header">
+        <span class="header-unitedphone">Questions? Call our office at 562 622 1002</span>
+      </div>
+    </div>
+    <nav class="navbar navbar-default navbar-fixed-top practice-app-navbar">
+      <div class="container-fluid practice-app-nav-container">
+        <div class="navbar-header">
+          <img class="usc-logo-new" src="../images/logo-physicians.png"/>${brand}
+        </div>
+      </div>
+    </nav>
+    <div class="header-space container-fluid">
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+          ${auth-widget}
+        </div>
+      </div>
+    </div>
+    <div class="custom-footer">
+      <div class="inside-footer">
+        <span class="footer-copyright">Copyright 2016 United Sleep Centers</span>
+        <span class="footer-pes7">Powered By <a href="http://pes7.com/">PES7 Healthcare Technology Solutions</a></span>
+      </div>
+    </div>
+  </message>
+
+  <message id="template.StaffLogin">
+    <div class="custom-header">
+      <div class="inside-header">
+        <span class="header-unitedphone">Questions? Call our office at 562 622 1002</span>
+      </div>
+    </div>
+    <nav class="navbar navbar-default navbar-fixed-top practice-app-navbar">
+      <div class="container-fluid practice-app-nav-container">
+        <div class="navbar-header">
+          <img class="usc-logo-new" src="../images/logo-physicians.png"/>${brand}
+        </div>
+      </div>
+    </nav>
+    <div class="header-space container-fluid">
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+          ${auth-widget}
+        </div>
+      </div>
+    </div>
+    <div class="custom-footer">
+      <div class="inside-footer">
+        <span class="footer-copyright">Copyright 2016 United Sleep Centers</span>
+        <span class="footer-pes7">Powered By <a href="http://pes7.com/">PES7 Healthcare Technology Solutions</a></span>
+      </div>
+    </div>
+  </message>
+
+
+  <message id="template.PracticeReferral">
+    <div class="referral-form-header">
+      <h2>Online Referral</h2>
+    </div>
+    <fieldset>
+      <legend>${tr:patient.referral.demographics.label}</legend>
+      ${<if:patient.referral.first_name>}
+      <div class="control-group">
+        <label for="${id:patient.referral.first_name}">${patient.referral.first_name-label}</label>
+        ${patient.referral.first_name}<span class="help-inline">${patient.referral.first_name-info}</span>
+      </div>
+      ${</if:patient.referral.first_name>}
+
+      ${<if:patient.referral.last_name>}
+      <div class="control-group">
+        <label for="${id:patient.referral.last_name}">${patient.referral.last_name-label}</label>
+        ${patient.referral.last_name}<span class="help-inline">${patient.referral.last_name-info}</span>
+      </div>
+      ${</if:patient.referral.last_name>}
+
+      ${<if:patient.referral.address1>}
+      <div class="control-group">
+        <label for="${id:patient.referral.address1}">${patient.referral.address1-label}</label>
+        ${patient.referral.address1}<span class="help-inline">${patient.referral.address1-info}</span>
+      </div>
+      ${</if:patient.referral.address1>}
+
+      ${<if:patient.referral.address2>}
+      <div class="control-group">
+        <label for="${id:patient.referral.address2}">${patient.referral.address2-label}</label>
+        ${patient.referral.address2}<span class="help-inline">${patient.referral.address2-info}</span>
+      </div>
+      ${</if:patient.referral.address2>}
+
+      ${<if:patient.referral.city>}
+      <div class="control-group">
+        <label for="${id:patient.referral.city}">${patient.referral.city-label}</label>
+        ${patient.referral.city}<span class="help-inline">${patient.referral.city-info}</span>
+      </div>
+      ${</if:patient.referral.city>}
+
+      ${<if:patient.referral.zipcode>}
+      <div class="control-group">
+        <label for="${id:patient.referral.zipcode}">${patient.referral.zipcode-label}</label>
+        ${patient.referral.zipcode}<span class="help-inline">${patient.referral.zipcode-info}</span>
+      </div>
+      ${</if:patient.referral.zipcode>}
+
+      ${<if:patient.referral.home_phone>}
+      <div class="control-group">
+        <label for="${id:patient.referral.home_phone}">${patient.referral.home_phone-label}</label>
+        ${patient.referral.home_phone}<span class="help-inline">${patient.referral.home_phone-info}</span>
+      </div>
+      ${</if:patient.referral.home_phone>}
+
+      ${<if:patient.referral.cell_phone>}
+      <div class="control-group">
+        <label for="${id:patient.referral.cell_phone}">${patient.referral.cell_phone-label}</label>
+        ${patient.referral.cell_phone}<span class="help-inline">${patient.referral.cell_phone-info}</span>
+      </div>
+      ${</if:patient.referral.cell_phone>}
+
+      ${<if:patient.referral.dob>}
+      <div class="control-group">
+        <label for="${id:patient.referral.dob}">${patient.referral.dob-label}</label>
+        ${patient.referral.dob}<span class="help-inline">${patient.referral.dob-info}</span>
+      </div>
+      ${</if:patient.referral.dob>}
+
+      ${<if:patient.referral.gender.male>}
+      <div class="control-group">
+        <p>${tr:patient.referral.gender.label}</p>
+        <label for="${id:patient.referral.gender.male}">
+          ${patient.referral.gender.male} ${patient.referral.gender.male-label}
+        </label>
+        <label for="${id:patient.referral.gender.female}">
+          ${patient.referral.gender.female} ${patient.referral.gender.female-label}
+        </label>
+        <label for="${id:patient.referral.gender.other}">
+          ${patient.referral.gender.other} ${patient.referral.gender.other-label}
+        </label>
+        <span class="help-inline">${patient.referral.gender.male-info}</span>
+      </div>
+      ${</if:patient.referral.gender.male>}
+    </fieldset>
+    <fieldset>
+      <legend>${tr:patient.referral.diagnosis.group.label}</legend>
+      ${<if:patient.referral.diagnosis.apnea>}
+      <div class="control-group">
+        <label for="${id:patient.referral.diagnosis.apnea}">
+          ${patient.referral.diagnosis.apnea} ${patient.referral.diagnosis.apnea-label}
+        </label>
+        <span class="help-inline">${patient.referral.diagnosis.apnea-info}</span>
+      </div>
+      ${</if:patient.referral.diagnosis.apnea>}
+      ${<if:patient.referral.diagnosis.fatigue>}
+      <div class="control-group">
+        <label for="${id:patient.referral.diagnosis.fatigue}">
+          ${patient.referral.diagnosis.fatigue} ${patient.referral.diagnosis.fatigue-label}
+        </label>
+        <span class="help-inline">${patient.referral.diagnosis.fatigue-info}</span>
+      </div>
+      ${</if:patient.referral.diagnosis.fatigue>}
+      ${<if:patient.referral.diagnosis.seizures>}
+      <div class="control-group">
+        <label for="${id:patient.referral.diagnosis.seizures}">
+          ${patient.referral.diagnosis.seizures} ${patient.referral.diagnosis.seizures-label}
+        </label>
+        <span class="help-inline">${patient.referral.diagnosis.seizures-info}</span>
+      </div>
+      ${</if:patient.referral.diagnosis.seizures>}
+      ${<if:patient.referral.diagnosis.insomnia>}
+      <div class="control-group">
+        <label for="${id:patient.referral.diagnosis.insomnia}">
+          ${patient.referral.diagnosis.insomnia} ${patient.referral.diagnosis.insomnia-label}
+        </label>
+        <span class="help-inline">${patient.referral.diagnosis.insomnia-info}</span>
+      </div>
+      ${</if:patient.referral.diagnosis.insomnia>}
+      ${<if:patient.referral.diagnosis.narcolepsy>}
+      <div class="control-group">
+        <label for="${id:patient.referral.diagnosis.narcolepsy}">
+          ${patient.referral.diagnosis.narcolepsy} ${patient.referral.diagnosis.narcolepsy-label}
+        </label>
+        <span class="help-inline">${patient.referral.diagnosis.narcolepsy-info}</span>
+      </div>
+      ${</if:patient.referral.diagnosis.narcolepsy>}
+      ${<if:patient.referral.diagnosis.restless_legs>}
+      <div class="control-group">
+        <label for="${id:patient.referral.diagnosis.restless_legs}">
+          ${patient.referral.diagnosis.restless_legs} ${patient.referral.diagnosis.restless_legs-label}
+        </label>
+        <span class="help-inline">${patient.referral.diagnosis.restless_legs-info}</span>
+      </div>
+      ${</if:patient.referral.diagnosis.restless_legs>}
+      ${<if:patient.referral.diagnosis.other>}
+      <div class="control-group">
+        <label for="${id:patient.referral.diagnosis.other}">${patient.referral.diagnosis.other-label}</label>
+        ${patient.referral.diagnosis.other}<span class="help-inline">${patient.referral.diagnosis.other-info}</span>
+      </div>
+      ${</if:patient.referral.diagnosis.other>}
+    </fieldset>
+    <fieldset>
+      <legend>${tr:patient.referral.procedure.overnight.group.label}</legend>
+      <p>${tr:patient.referral.procedure.overnight.group.blurb}</p>
+      ${<if:patient.referral.procedure.overnight.complete>}
+      <div class="control-group">
+        <label for="${id:patient.referral.procedure.overnight.complete}">
+          ${patient.referral.procedure.overnight.complete} ${patient.referral.procedure.overnight.complete-label}
+        </label>
+        <span class="help-inline">${patient.referral.procedure.overnight.complete-info}</span>
+      </div>
+      ${</if:patient.referral.procedure.overnight.complete>}
+      ${<if:patient.referral.procedure.overnight.psg>}
+      <div class="control-group">
+        <label for="${id:patient.referral.procedure.overnight.psg}">
+          ${patient.referral.procedure.overnight.psg} ${patient.referral.procedure.overnight.psg-label}
+        </label>
+        <span class="help-inline">${patient.referral.procedure.overnight.psg-info}</span>
+      </div>
+      ${</if:patient.referral.procedure.overnight.psg>}
+      ${<if:patient.referral.procedure.overnight.cpap>}
+      <div class="control-group">
+        <label for="${id:patient.referral.procedure.overnight.cpap}">
+          ${patient.referral.procedure.overnight.cpap} ${patient.referral.procedure.overnight.cpap-label}
+        </label>
+        <span class="help-inline">${patient.referral.procedure.overnight.cpap-info}</span>
+      </div>
+      ${</if:patient.referral.procedure.overnight.cpap>}
+      ${<if:patient.referral.procedure.overnight.split>}
+      <div class="control-group">
+        <label for="${id:patient.referral.procedure.overnight.split}">
+          ${patient.referral.procedure.overnight.split} ${patient.referral.procedure.overnight.split-label}
+        </label>
+        <span class="help-inline">${patient.referral.procedure.overnight.split-info}</span>
+      </div>
+      ${</if:patient.referral.procedure.overnight.split>}
+    </fieldset>
+    <fieldset>
+      <legend>${tr:patient.referral.procedure.other.group.label}</legend>
+      ${<if:patient.referral.procedure.other.papnap>}
+      <div class="control-group">
+        <label for="${id:patient.referral.procedure.other.papnap}">
+          ${patient.referral.procedure.other.papnap} ${patient.referral.procedure.other.papnap-label}
+        </label>
+        <span class="help-inline">${patient.referral.procedure.other.papnap-info}</span>
+      </div>
+      ${</if:patient.referral.procedure.other.papnap>}
+      ${<if:patient.referral.procedure.other.mslt_mwt>}
+      <div class="control-group">
+        <label for="${id:patient.referral.procedure.other.mslt_mwt}">
+          ${patient.referral.procedure.other.mslt_mwt} ${patient.referral.procedure.other.mslt_mwt-label}
+        </label>
+        <span class="help-inline">${patient.referral.procedure.other.mslt_mwt-info}</span>
+      </div>
+      ${</if:patient.referral.procedure.other.mslt_mwt>}
+      ${<if:patient.referral.procedure.other.mwt>}
+      <div class="control-group">
+        <label for="${id:patient.referral.procedure.other.mwt}">
+          ${patient.referral.procedure.other.mwt} ${patient.referral.procedure.other.mwt-label}
+        </label>
+        <span class="help-inline">${patient.referral.procedure.other.mwt-info}</span>
+      </div>
+      ${</if:patient.referral.procedure.other.mwt>}
+      ${<if:patient.referral.procedure.other.siezure_study>}
+      <div class="control-group">
+        <label for="${id:patient.referral.procedure.other.siezure_study}">
+          ${patient.referral.procedure.other.siezure_study} ${patient.referral.procedure.other.siezure_study-label}
+        </label>
+        <span class="help-inline">${patient.referral.procedure.other.siezure_study-info}</span>
+      </div>
+      ${</if:patient.referral.procedure.other.siezure_study>}
+      ${<if:patient.referral.procedure.other.hst>}
+      <div class="control-group">
+        <label for="${id:patient.referral.procedure.other.hst}">
+          ${patient.referral.procedure.other.hst} ${patient.referral.procedure.other.hst-label}
+        </label>
+        <span class="help-inline">${patient.referral.procedure.other.hst-info}</span>
+      </div>
+      ${</if:patient.referral.procedure.other.hst>}
+    </fieldset>
+    ${<if:patient.referral.authorize>}
+      <div class="control-group">
+        <label for="${id:patient.referral.authorize}">
+          ${patient.referral.authorize} ${patient.referral.authorize-label}
+        </label>
+        <span class="help-inline">${patient.referral.authorize-info}</span>
+      </div>
+      ${</if:patient.referral.authorize>}
+      ${continue-button}
+  </message>
+
+  <message id="graphics-GoogleMap-controls">
+    <table class="googlemaps-controls">
+      <tr>
+        <td>Zoom:</td>
+        <td>
+          ${zoom-in} ${zoom-out}
+        </td>
+      </tr>
+      <tr>
+        <td>Pan to:</td>
+        <td>
+          ${Downey} ${LongBeach} ${Irvine}
+        </td>
+      </tr>
+      <tr>
+        <td>Control menu type: </td>
+        <td>
+          ${control-menu-combo}
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">${dragging-cb}</td>
+      </tr>
+      <tr>
+        <td colspan="2">${double-click-zoom-cb}</td>
+      </tr>
+      <tr>
+        <td colspan="2">${scroll-wheel-zoom-cb}</td>
+      </tr>
+      <tr>
+        <td colspan="2">${save-position} ${return-to-saved-position}</td>
+      </tr>
+    </table>
+  </message>
+  
+  <message id="date-template">
+    <div class="form-horizontal">
+      <div class="form-group">
+        <div class="col-sm-4">${birth-date}</div>
+      </div>
+    </div>
+  </message>
+
+
+</messages>

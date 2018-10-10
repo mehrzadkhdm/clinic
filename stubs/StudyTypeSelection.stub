@@ -1,0 +1,87 @@
+	Wt::WContainerWidget *typeContainer = new Wt::WContainerWidget();
+
+	Wt::WLabel *lblStudyType = new Wt::WLabel("Study Type:");
+	lblStudyType->setStyleClass("sig-lbl");
+	
+	Wt::WHBoxLayout *typebox = new Wt::WHBoxLayout();
+	typebox->addWidget(lblStudyType);
+
+	dbo::Transaction instrans(dbsession);
+
+	typedef dbo::collection< dbo::ptr<StudyType> > StudyTypes;
+	StudyTypes types = dbsession.find<StudyType>();
+	std::cerr << types.size() << std::endl;
+
+	std::vector<StudyTypeItem> typeitems;
+
+	for (StudyTypes::const_iterator i = types.begin(); i != types.end(); ++i)
+	{
+		
+		Wt::WString name = (*i)->studyTypeName_;
+		Wt::WString cody = (*i)->studyTypeCode_;
+		Wt::WString id = (*i)->studyTypeId_;
+		
+
+		StudyTypeItem *e = new StudyTypeItem();
+		e->typeName = name;
+		e->typeCode = code;
+		e->typeId = id;
+
+
+		typeitems.push_back(*e);
+
+	}
+	log("notice") << "Current Number of type items "<< typeitems.size();
+
+	instrans.commit();
+
+
+
+	Wt::WComboBox *cbtype = new Wt::WComboBox();
+	cbtype->setStyleClass("sig-left-box");
+	Wt::WText *typeout = new Wt::WText();		
+	cbtype->addItem("");
+
+	for (std::vector<StudyTypeItem>::const_iterator ev = typeitems.begin(); ev != typeitems.end(); ++ev)
+	{
+		cbtype->addItem(ev->studyTypeName);		
+	}
+	
+	cbtype->changed().connect(std::bind([=] () {
+  		
+  		StudyTypeItem selected;
+		
+	  	for (std::vector<StudyTypeItem>::const_iterator ev = typeitems.begin(); ev != typeitems.end(); ++ev)
+		{
+			Wt::WString cbname;
+			cbname = cbtype->currentText();
+			
+			if (ev->studyTypeName == cbname)
+			{
+				selected = *ev;	
+			}
+		}
+		if (selected.studyTypeName != "")
+		{
+	    	
+	    	newStudyTypeId_ = selected.typeId;
+	    	newStudyTypeName_ = selected.typeName;
+	    	newStudyTypeCode_ = selected.typeName;
+	    	
+			newstudy->show();
+
+
+		} else {
+			log("notice") << "Selected: No StudyType";
+	    	newStudyTypeId_ = "";
+	    	newStudyTypeName_ = "No Type Selected";
+	    	newStudyTypeCode_ = "No Type Code";
+		}
+	
+	}));
+		
+	cbtype->setCurrentIndex(0);
+	cbtype->setMargin(10, Wt::Right);
+
+	typebox->addWidget(cbtype);
+	typeContainer->setLayout(typebox);

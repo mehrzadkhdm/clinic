@@ -1,0 +1,92 @@
+	Wt::WContainerWidget *insuranceContainer = new Wt::WContainerWidget();
+
+	Wt::WLabel *lblInsurance = new Wt::WLabel("Patient Insurance:");
+	lblInsurance->setStyleClass("sig-lbl");
+	
+	Wt::WHBoxLayout *insurancebox = new Wt::WHBoxLayout();
+	insurancebox->addWidget(lblInsurance);
+
+	dbo::Transaction instrans(dbsession);
+
+	typedef dbo::collection< dbo::ptr<Insurance> > Insurances;
+	Insurances insurances = dbsession.find<Insurance>();
+	std::cerr << insurances.size() << std::endl;
+
+	std::vector<InsuranceItem> insuranceitems;
+
+	for (Insurances::const_iterator i = insurances.begin(); i != insurances.end(); ++i)
+	{
+		
+		Wt::WString name = (*i)->insuranceName_;
+		Wt::WString id = (*i)->insuranceId_;
+	
+
+		InsuranceItem *e = new InsuranceItem();
+		e->insuranceName = name;
+		e->insuranceId = id;
+
+
+		insuranceitems.push_back(*e);
+
+	}
+	log("notice") << "Current Number of insurance items "<< insuranceitems.size();
+
+	instrans.commit();
+
+
+
+	Wt::WComboBox *cbinsurance = new Wt::WComboBox();
+	cbinsurance->setStyleClass("sig-left-box");
+	Wt::WText *insuranceout = new Wt::WText();		
+	cbinsurance->addItem("");
+
+	for (std::vector<InsuranceItem>::const_iterator ev = insuranceitems.begin(); ev != insuranceitems.end(); ++ev)
+	{
+		cbinsurance->addItem(ev->insuranceName);		
+	}
+	
+	cbinsurance->changed().connect(std::bind([=] () {
+  		
+  		InsuranceItem selected;
+		
+	  	for (std::vector<InsuranceItem>::const_iterator ev = insuranceitems.begin(); ev != insuranceitems.end(); ++ev)
+		{
+			Wt::WString cbname;
+			cbname = cbinsurance->currentText();
+			
+			if (ev->insuranceName == cbname)
+			{
+				selected = *ev;	
+			}
+		}
+		if (selected.insuranceName != "")
+		{
+			Wt::WString patientInsuranceId_;
+			Wt::WString patientInsuranceName_;	
+	    	
+	    	patientInsuranceId_ = selected.insuranceId;
+	    	patientInsuranceName_ = selected.insuranceName;
+	    	
+	    	//save insurance change to pt
+	    	dbo::Transaction ptrans(dbsession);
+
+			dbo::ptr<Patient> pat = dbsession.find<Patient>().where("pt_id = ?").bind(pt);
+
+			pat.modify()->ptInsuranceName_ = patientInsuranceName_.toUTF8();
+			pat.modify()->ptInsuranceId_ = patientInsuranceId_.toUTF8();
+
+			ptrans.commit();
+
+		} else {
+			log("notice") << "Selected: No Insurance";
+			studyInsuranceName_ = "Not Selected";
+			studyInsuranceId_ = "";
+		}
+	
+	}));
+		
+	cbinsurance->setCurrentIndex(0);
+	cbinsurance->setMargin(10, Wt::Right);
+
+	insurancebox->addWidget(cbinsurance);
+	insuranceContainer->setLayout(insurancebox);

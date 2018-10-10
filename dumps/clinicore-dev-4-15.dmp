@@ -1,0 +1,1787 @@
+--
+-- PostgreSQL database dump
+--
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+
+--
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
+SET search_path = public, pg_catalog;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- Name: attachment; Type: TABLE; Schema: public; Owner: clinicore; Tablespace: 
+--
+
+CREATE TABLE attachment (
+    id bigint NOT NULL,
+    version integer NOT NULL,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
+    att_filename text NOT NULL,
+    temp_ref text NOT NULL,
+    att_id text NOT NULL,
+    att_mime text NOT NULL,
+    pt_id text NOT NULL
+);
+
+
+ALTER TABLE public.attachment OWNER TO clinicore;
+
+--
+-- Name: attachment_id_seq; Type: SEQUENCE; Schema: public; Owner: clinicore
+--
+
+CREATE SEQUENCE attachment_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.attachment_id_seq OWNER TO clinicore;
+
+--
+-- Name: attachment_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: clinicore
+--
+
+ALTER SEQUENCE attachment_id_seq OWNED BY attachment.id;
+
+
+--
+-- Name: auth_identity; Type: TABLE; Schema: public; Owner: clinicore; Tablespace: 
+--
+
+CREATE TABLE auth_identity (
+    id bigint NOT NULL,
+    version integer NOT NULL,
+    auth_info_id bigint,
+    provider character varying(64) NOT NULL,
+    identity character varying(512) NOT NULL
+);
+
+
+ALTER TABLE public.auth_identity OWNER TO clinicore;
+
+--
+-- Name: auth_identity_id_seq; Type: SEQUENCE; Schema: public; Owner: clinicore
+--
+
+CREATE SEQUENCE auth_identity_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.auth_identity_id_seq OWNER TO clinicore;
+
+--
+-- Name: auth_identity_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: clinicore
+--
+
+ALTER SEQUENCE auth_identity_id_seq OWNED BY auth_identity.id;
+
+
+--
+-- Name: auth_info; Type: TABLE; Schema: public; Owner: clinicore; Tablespace: 
+--
+
+CREATE TABLE auth_info (
+    id bigint NOT NULL,
+    version integer NOT NULL,
+    user_id bigint,
+    password_hash character varying(100) NOT NULL,
+    password_method character varying(20) NOT NULL,
+    password_salt character varying(20) NOT NULL,
+    status integer NOT NULL,
+    failed_login_attempts integer NOT NULL,
+    last_login_attempt timestamp without time zone,
+    email character varying(256) NOT NULL,
+    unverified_email character varying(256) NOT NULL,
+    email_token character varying(64) NOT NULL,
+    email_token_expires timestamp without time zone,
+    email_token_role integer NOT NULL
+);
+
+
+ALTER TABLE public.auth_info OWNER TO clinicore;
+
+--
+-- Name: auth_info_id_seq; Type: SEQUENCE; Schema: public; Owner: clinicore
+--
+
+CREATE SEQUENCE auth_info_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.auth_info_id_seq OWNER TO clinicore;
+
+--
+-- Name: auth_info_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: clinicore
+--
+
+ALTER SEQUENCE auth_info_id_seq OWNED BY auth_info.id;
+
+
+--
+-- Name: auth_token; Type: TABLE; Schema: public; Owner: clinicore; Tablespace: 
+--
+
+CREATE TABLE auth_token (
+    id bigint NOT NULL,
+    version integer NOT NULL,
+    auth_info_id bigint,
+    value character varying(64) NOT NULL,
+    expires timestamp without time zone
+);
+
+
+ALTER TABLE public.auth_token OWNER TO clinicore;
+
+--
+-- Name: auth_token_id_seq; Type: SEQUENCE; Schema: public; Owner: clinicore
+--
+
+CREATE SEQUENCE auth_token_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.auth_token_id_seq OWNER TO clinicore;
+
+--
+-- Name: auth_token_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: clinicore
+--
+
+ALTER SEQUENCE auth_token_id_seq OWNED BY auth_token.id;
+
+
+--
+-- Name: backup; Type: TABLE; Schema: public; Owner: clinicore; Tablespace: 
+--
+
+CREATE TABLE backup (
+    id bigint NOT NULL,
+    version integer NOT NULL,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
+    pt_first text NOT NULL,
+    pt_last text NOT NULL,
+    pt_home text NOT NULL,
+    pt_cell text NOT NULL,
+    pt_dob text NOT NULL,
+    pt_id text NOT NULL,
+    pref_loco text NOT NULL,
+    bu_id text NOT NULL
+);
+
+
+ALTER TABLE public.backup OWNER TO clinicore;
+
+--
+-- Name: backup_id_seq; Type: SEQUENCE; Schema: public; Owner: clinicore
+--
+
+CREATE SEQUENCE backup_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.backup_id_seq OWNER TO clinicore;
+
+--
+-- Name: backup_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: clinicore
+--
+
+ALTER SEQUENCE backup_id_seq OWNED BY backup.id;
+
+
+--
+-- Name: comment; Type: TABLE; Schema: public; Owner: clinicore; Tablespace: 
+--
+
+CREATE TABLE comment (
+    id bigint NOT NULL,
+    version integer NOT NULL,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
+    staff_email text NOT NULL,
+    backup_id text NOT NULL,
+    pt_id text NOT NULL,
+    comment text NOT NULL,
+    pt_firstname text NOT NULL
+);
+
+
+ALTER TABLE public.comment OWNER TO clinicore;
+
+--
+-- Name: comment_id_seq; Type: SEQUENCE; Schema: public; Owner: clinicore
+--
+
+CREATE SEQUENCE comment_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.comment_id_seq OWNER TO clinicore;
+
+--
+-- Name: comment_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: clinicore
+--
+
+ALTER SEQUENCE comment_id_seq OWNED BY comment.id;
+
+
+--
+-- Name: composite; Type: TABLE; Schema: public; Owner: clinicore; Tablespace: 
+--
+
+CREATE TABLE composite (
+    id bigint NOT NULL,
+    version integer NOT NULL,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+ALTER TABLE public.composite OWNER TO clinicore;
+
+--
+-- Name: composite_id_seq; Type: SEQUENCE; Schema: public; Owner: clinicore
+--
+
+CREATE SEQUENCE composite_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.composite_id_seq OWNER TO clinicore;
+
+--
+-- Name: composite_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: clinicore
+--
+
+ALTER SEQUENCE composite_id_seq OWNED BY composite.id;
+
+
+--
+-- Name: insurance; Type: TABLE; Schema: public; Owner: clinicore; Tablespace: 
+--
+
+CREATE TABLE insurance (
+    id bigint NOT NULL,
+    version integer NOT NULL,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
+    ins_name text NOT NULL,
+    ins_id text NOT NULL
+);
+
+
+ALTER TABLE public.insurance OWNER TO clinicore;
+
+--
+-- Name: insurance_id_seq; Type: SEQUENCE; Schema: public; Owner: clinicore
+--
+
+CREATE SEQUENCE insurance_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.insurance_id_seq OWNER TO clinicore;
+
+--
+-- Name: insurance_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: clinicore
+--
+
+ALTER SEQUENCE insurance_id_seq OWNED BY insurance.id;
+
+
+--
+-- Name: locality; Type: TABLE; Schema: public; Owner: clinicore; Tablespace: 
+--
+
+CREATE TABLE locality (
+    id bigint NOT NULL,
+    version integer NOT NULL,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
+    local_name text NOT NULL,
+    local_state text NOT NULL,
+    local_id text NOT NULL
+);
+
+
+ALTER TABLE public.locality OWNER TO clinicore;
+
+--
+-- Name: locality_id_seq; Type: SEQUENCE; Schema: public; Owner: clinicore
+--
+
+CREATE SEQUENCE locality_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.locality_id_seq OWNER TO clinicore;
+
+--
+-- Name: locality_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: clinicore
+--
+
+ALTER SEQUENCE locality_id_seq OWNED BY locality.id;
+
+
+--
+-- Name: order; Type: TABLE; Schema: public; Owner: clinicore; Tablespace: 
+--
+
+CREATE TABLE "order" (
+    id bigint NOT NULL,
+    version integer NOT NULL,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
+    prac_name text NOT NULL,
+    prac_drfirst text NOT NULL,
+    prac_drlast text NOT NULL,
+    prac_email text NOT NULL,
+    rep_at text NOT NULL,
+    report_id text NOT NULL
+);
+
+
+ALTER TABLE public."order" OWNER TO clinicore;
+
+--
+-- Name: order_id_seq; Type: SEQUENCE; Schema: public; Owner: clinicore
+--
+
+CREATE SEQUENCE order_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.order_id_seq OWNER TO clinicore;
+
+--
+-- Name: order_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: clinicore
+--
+
+ALTER SEQUENCE order_id_seq OWNED BY "order".id;
+
+
+--
+-- Name: patient; Type: TABLE; Schema: public; Owner: clinicore; Tablespace: 
+--
+
+CREATE TABLE patient (
+    id bigint NOT NULL,
+    version integer NOT NULL,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
+    pt_first text NOT NULL,
+    pt_last text NOT NULL,
+    pt_addr1 text NOT NULL,
+    pt_addr2 text NOT NULL,
+    pt_city text NOT NULL,
+    pt_zip text NOT NULL,
+    pt_home text NOT NULL,
+    pt_cell text NOT NULL,
+    pt_email text NOT NULL,
+    pt_dob text NOT NULL,
+    pt_gender text NOT NULL,
+    pt_id text NOT NULL,
+    num_reschedule integer NOT NULL,
+    pt_insid text NOT NULL,
+    pt_insname text NOT NULL,
+    ref_id text NOT NULL,
+    prac_id text NOT NULL
+);
+
+
+ALTER TABLE public.patient OWNER TO clinicore;
+
+--
+-- Name: patient_id_seq; Type: SEQUENCE; Schema: public; Owner: clinicore
+--
+
+CREATE SEQUENCE patient_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.patient_id_seq OWNER TO clinicore;
+
+--
+-- Name: patient_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: clinicore
+--
+
+ALTER SEQUENCE patient_id_seq OWNED BY patient.id;
+
+
+--
+-- Name: physicianissue; Type: TABLE; Schema: public; Owner: clinicore; Tablespace: 
+--
+
+CREATE TABLE physicianissue (
+    id bigint NOT NULL,
+    version integer NOT NULL,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
+    date_reported timestamp without time zone,
+    date_resolved timestamp without time zone,
+    pcc_name text NOT NULL,
+    md_name text NOT NULL,
+    md_phone text NOT NULL,
+    title text NOT NULL,
+    description text NOT NULL,
+    status text NOT NULL,
+    action_taken text NOT NULL,
+    issue_id text NOT NULL,
+    prac_id text NOT NULL,
+    visit_id text NOT NULL,
+    pcc_id text NOT NULL
+);
+
+
+ALTER TABLE public.physicianissue OWNER TO clinicore;
+
+--
+-- Name: physicianissue_id_seq; Type: SEQUENCE; Schema: public; Owner: clinicore
+--
+
+CREATE SEQUENCE physicianissue_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.physicianissue_id_seq OWNER TO clinicore;
+
+--
+-- Name: physicianissue_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: clinicore
+--
+
+ALTER SEQUENCE physicianissue_id_seq OWNED BY physicianissue.id;
+
+
+--
+-- Name: physicianvisit; Type: TABLE; Schema: public; Owner: clinicore; Tablespace: 
+--
+
+CREATE TABLE physicianvisit (
+    id bigint NOT NULL,
+    version integer NOT NULL,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
+    visit_start timestamp without time zone,
+    visit_end timestamp without time zone,
+    this_visit_dt timestamp without time zone,
+    next_visit_dt timestamp without time zone,
+    pcc_name text NOT NULL,
+    visit_issues text NOT NULL,
+    prac_name text NOT NULL,
+    visit_reason text NOT NULL,
+    visit_outcome text NOT NULL,
+    prac_manager text NOT NULL,
+    visit_id text NOT NULL,
+    prac_id text NOT NULL,
+    pcc_id text NOT NULL
+);
+
+
+ALTER TABLE public.physicianvisit OWNER TO clinicore;
+
+--
+-- Name: physicianvisit_id_seq; Type: SEQUENCE; Schema: public; Owner: clinicore
+--
+
+CREATE SEQUENCE physicianvisit_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.physicianvisit_id_seq OWNER TO clinicore;
+
+--
+-- Name: physicianvisit_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: clinicore
+--
+
+ALTER SEQUENCE physicianvisit_id_seq OWNED BY physicianvisit.id;
+
+
+--
+-- Name: prac_auth_identity; Type: TABLE; Schema: public; Owner: clinicore; Tablespace: 
+--
+
+CREATE TABLE prac_auth_identity (
+    id bigint NOT NULL,
+    version integer NOT NULL,
+    prac_auth_info_id bigint,
+    provider character varying(64) NOT NULL,
+    identity character varying(512) NOT NULL
+);
+
+
+ALTER TABLE public.prac_auth_identity OWNER TO clinicore;
+
+--
+-- Name: prac_auth_identity_id_seq; Type: SEQUENCE; Schema: public; Owner: clinicore
+--
+
+CREATE SEQUENCE prac_auth_identity_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.prac_auth_identity_id_seq OWNER TO clinicore;
+
+--
+-- Name: prac_auth_identity_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: clinicore
+--
+
+ALTER SEQUENCE prac_auth_identity_id_seq OWNED BY prac_auth_identity.id;
+
+
+--
+-- Name: prac_auth_info; Type: TABLE; Schema: public; Owner: clinicore; Tablespace: 
+--
+
+CREATE TABLE prac_auth_info (
+    id bigint NOT NULL,
+    version integer NOT NULL,
+    user_id bigint,
+    password_hash character varying(100) NOT NULL,
+    password_method character varying(20) NOT NULL,
+    password_salt character varying(20) NOT NULL,
+    status integer NOT NULL,
+    failed_login_attempts integer NOT NULL,
+    last_login_attempt timestamp without time zone,
+    email character varying(256) NOT NULL,
+    unverified_email character varying(256) NOT NULL,
+    email_token character varying(64) NOT NULL,
+    email_token_expires timestamp without time zone,
+    email_token_role integer NOT NULL
+);
+
+
+ALTER TABLE public.prac_auth_info OWNER TO clinicore;
+
+--
+-- Name: prac_auth_info_id_seq; Type: SEQUENCE; Schema: public; Owner: clinicore
+--
+
+CREATE SEQUENCE prac_auth_info_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.prac_auth_info_id_seq OWNER TO clinicore;
+
+--
+-- Name: prac_auth_info_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: clinicore
+--
+
+ALTER SEQUENCE prac_auth_info_id_seq OWNED BY prac_auth_info.id;
+
+
+--
+-- Name: prac_auth_token; Type: TABLE; Schema: public; Owner: clinicore; Tablespace: 
+--
+
+CREATE TABLE prac_auth_token (
+    id bigint NOT NULL,
+    version integer NOT NULL,
+    prac_auth_info_id bigint,
+    value character varying(64) NOT NULL,
+    expires timestamp without time zone
+);
+
+
+ALTER TABLE public.prac_auth_token OWNER TO clinicore;
+
+--
+-- Name: prac_auth_token_id_seq; Type: SEQUENCE; Schema: public; Owner: clinicore
+--
+
+CREATE SEQUENCE prac_auth_token_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.prac_auth_token_id_seq OWNER TO clinicore;
+
+--
+-- Name: prac_auth_token_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: clinicore
+--
+
+ALTER SEQUENCE prac_auth_token_id_seq OWNED BY prac_auth_token.id;
+
+
+--
+-- Name: practice; Type: TABLE; Schema: public; Owner: clinicore; Tablespace: 
+--
+
+CREATE TABLE practice (
+    id bigint NOT NULL,
+    version integer NOT NULL,
+    prac_name text NOT NULL,
+    prac_zip text NOT NULL,
+    prac_drfirst text NOT NULL,
+    prac_drlast text NOT NULL,
+    prac_npi text NOT NULL,
+    prac_email text NOT NULL,
+    prac_specialty text NOT NULL,
+    prac_opt text NOT NULL,
+    clinicore_account text NOT NULL,
+    pcc_email text NOT NULL,
+    local_name text NOT NULL,
+    local_id text NOT NULL,
+    date_added timestamp without time zone,
+    is_group text NOT NULL,
+    group_id text NOT NULL,
+    prac_id text NOT NULL
+);
+
+
+ALTER TABLE public.practice OWNER TO clinicore;
+
+--
+-- Name: practice_id_seq; Type: SEQUENCE; Schema: public; Owner: clinicore
+--
+
+CREATE SEQUENCE practice_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.practice_id_seq OWNER TO clinicore;
+
+--
+-- Name: practice_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: clinicore
+--
+
+ALTER SEQUENCE practice_id_seq OWNED BY practice.id;
+
+
+--
+-- Name: referral; Type: TABLE; Schema: public; Owner: clinicore; Tablespace: 
+--
+
+CREATE TABLE referral (
+    id bigint NOT NULL,
+    version integer NOT NULL,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
+    prac_name text NOT NULL,
+    prac_zip text NOT NULL,
+    dr_first text NOT NULL,
+    dr_last text NOT NULL,
+    prac_npi text NOT NULL,
+    prac_email text NOT NULL,
+    prac_specialty text NOT NULL,
+    prac_id text NOT NULL,
+    pt_firstname text NOT NULL,
+    pt_lastname text NOT NULL,
+    pt_addr1 text NOT NULL,
+    pt_addr2 text NOT NULL,
+    pt_city text NOT NULL,
+    pt_zip text NOT NULL,
+    pt_homephone text NOT NULL,
+    pt_cellphone text NOT NULL,
+    pt_email text NOT NULL,
+    pt_dob text NOT NULL,
+    pt_four text NOT NULL,
+    pt_gender text NOT NULL,
+    study_diag text NOT NULL,
+    study_overnight text NOT NULL,
+    study_hst text NOT NULL,
+    study_other text NOT NULL,
+    study_auth text NOT NULL,
+    ref_id text NOT NULL,
+    pt_id text NOT NULL,
+    enter_fullname text NOT NULL,
+    enter_email text NOT NULL,
+    inbound_status text NOT NULL,
+    insurance_id text NOT NULL,
+    insurance_name text NOT NULL,
+    ref_received date,
+    auth_expires date,
+    ref_status text NOT NULL,
+    study_date text NOT NULL,
+    study_time text NOT NULL,
+    std_type_id text NOT NULL,
+    std_type_name text NOT NULL,
+    std_type_code text NOT NULL,
+    study_loco text NOT NULL
+);
+
+
+ALTER TABLE public.referral OWNER TO clinicore;
+
+--
+-- Name: referral_id_seq; Type: SEQUENCE; Schema: public; Owner: clinicore
+--
+
+CREATE SEQUENCE referral_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.referral_id_seq OWNER TO clinicore;
+
+--
+-- Name: referral_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: clinicore
+--
+
+ALTER SEQUENCE referral_id_seq OWNED BY referral.id;
+
+
+--
+-- Name: report; Type: TABLE; Schema: public; Owner: clinicore; Tablespace: 
+--
+
+CREATE TABLE report (
+    id bigint NOT NULL,
+    version integer NOT NULL,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
+    prac_name text NOT NULL,
+    prac_drfirst text NOT NULL,
+    prac_drlast text NOT NULL,
+    prac_email text NOT NULL,
+    pt_firstname text NOT NULL,
+    pt_lastname text NOT NULL,
+    pt_dob text NOT NULL,
+    staff_name text NOT NULL,
+    report_id text NOT NULL
+);
+
+
+ALTER TABLE public.report OWNER TO clinicore;
+
+--
+-- Name: report_id_seq; Type: SEQUENCE; Schema: public; Owner: clinicore
+--
+
+CREATE SEQUENCE report_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.report_id_seq OWNER TO clinicore;
+
+--
+-- Name: report_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: clinicore
+--
+
+ALTER SEQUENCE report_id_seq OWNED BY report.id;
+
+
+--
+-- Name: shiftnote; Type: TABLE; Schema: public; Owner: clinicore; Tablespace: 
+--
+
+CREATE TABLE shiftnote (
+    id bigint NOT NULL,
+    version integer NOT NULL,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
+    emp_email text NOT NULL,
+    shift_loc text NOT NULL,
+    note_sent timestamp without time zone,
+    note_body text NOT NULL,
+    note_id text NOT NULL
+);
+
+
+ALTER TABLE public.shiftnote OWNER TO clinicore;
+
+--
+-- Name: shiftnote_id_seq; Type: SEQUENCE; Schema: public; Owner: clinicore
+--
+
+CREATE SEQUENCE shiftnote_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.shiftnote_id_seq OWNER TO clinicore;
+
+--
+-- Name: shiftnote_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: clinicore
+--
+
+ALTER SEQUENCE shiftnote_id_seq OWNED BY shiftnote.id;
+
+
+--
+-- Name: sleepstudy; Type: TABLE; Schema: public; Owner: clinicore; Tablespace: 
+--
+
+CREATE TABLE sleepstudy (
+    id bigint NOT NULL,
+    version integer NOT NULL,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
+    pt_first text NOT NULL,
+    pt_last text NOT NULL,
+    pt_addr1 text NOT NULL,
+    pt_addr2 text NOT NULL,
+    pt_city text NOT NULL,
+    pt_zip text NOT NULL,
+    pt_home text NOT NULL,
+    pt_cell text NOT NULL,
+    pt_email text NOT NULL,
+    pt_dob text NOT NULL,
+    pt_gender text NOT NULL,
+    std_diag text NOT NULL,
+    std_over text NOT NULL,
+    std_other text NOT NULL,
+    std_home text NOT NULL,
+    std_auth text NOT NULL,
+    std_status text NOT NULL,
+    appt_status text NOT NULL,
+    std_date date,
+    std_time text NOT NULL,
+    std_type_id text NOT NULL,
+    std_type_name text NOT NULL,
+    std_type_code text NOT NULL,
+    std_loco text NOT NULL,
+    bed_number text NOT NULL,
+    std_id text NOT NULL,
+    ref_id text NOT NULL,
+    prac_id text NOT NULL,
+    in_id text NOT NULL,
+    pt_id text NOT NULL
+);
+
+
+ALTER TABLE public.sleepstudy OWNER TO clinicore;
+
+--
+-- Name: sleepstudy_id_seq; Type: SEQUENCE; Schema: public; Owner: clinicore
+--
+
+CREATE SEQUENCE sleepstudy_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.sleepstudy_id_seq OWNER TO clinicore;
+
+--
+-- Name: sleepstudy_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: clinicore
+--
+
+ALTER SEQUENCE sleepstudy_id_seq OWNED BY sleepstudy.id;
+
+
+--
+-- Name: studytype; Type: TABLE; Schema: public; Owner: clinicore; Tablespace: 
+--
+
+CREATE TABLE studytype (
+    id bigint NOT NULL,
+    version integer NOT NULL,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
+    st_type_name text NOT NULL,
+    st_type_code text NOT NULL,
+    st_type_id text NOT NULL
+);
+
+
+ALTER TABLE public.studytype OWNER TO clinicore;
+
+--
+-- Name: studytype_id_seq; Type: SEQUENCE; Schema: public; Owner: clinicore
+--
+
+CREATE SEQUENCE studytype_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.studytype_id_seq OWNER TO clinicore;
+
+--
+-- Name: studytype_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: clinicore
+--
+
+ALTER SEQUENCE studytype_id_seq OWNED BY studytype.id;
+
+
+--
+-- Name: user; Type: TABLE; Schema: public; Owner: clinicore; Tablespace: 
+--
+
+CREATE TABLE "user" (
+    id bigint NOT NULL,
+    version integer NOT NULL
+);
+
+
+ALTER TABLE public."user" OWNER TO clinicore;
+
+--
+-- Name: user_id_seq; Type: SEQUENCE; Schema: public; Owner: clinicore
+--
+
+CREATE SEQUENCE user_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.user_id_seq OWNER TO clinicore;
+
+--
+-- Name: user_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: clinicore
+--
+
+ALTER SEQUENCE user_id_seq OWNED BY "user".id;
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: clinicore
+--
+
+ALTER TABLE ONLY attachment ALTER COLUMN id SET DEFAULT nextval('attachment_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: clinicore
+--
+
+ALTER TABLE ONLY auth_identity ALTER COLUMN id SET DEFAULT nextval('auth_identity_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: clinicore
+--
+
+ALTER TABLE ONLY auth_info ALTER COLUMN id SET DEFAULT nextval('auth_info_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: clinicore
+--
+
+ALTER TABLE ONLY auth_token ALTER COLUMN id SET DEFAULT nextval('auth_token_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: clinicore
+--
+
+ALTER TABLE ONLY backup ALTER COLUMN id SET DEFAULT nextval('backup_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: clinicore
+--
+
+ALTER TABLE ONLY comment ALTER COLUMN id SET DEFAULT nextval('comment_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: clinicore
+--
+
+ALTER TABLE ONLY composite ALTER COLUMN id SET DEFAULT nextval('composite_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: clinicore
+--
+
+ALTER TABLE ONLY insurance ALTER COLUMN id SET DEFAULT nextval('insurance_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: clinicore
+--
+
+ALTER TABLE ONLY locality ALTER COLUMN id SET DEFAULT nextval('locality_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: clinicore
+--
+
+ALTER TABLE ONLY "order" ALTER COLUMN id SET DEFAULT nextval('order_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: clinicore
+--
+
+ALTER TABLE ONLY patient ALTER COLUMN id SET DEFAULT nextval('patient_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: clinicore
+--
+
+ALTER TABLE ONLY physicianissue ALTER COLUMN id SET DEFAULT nextval('physicianissue_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: clinicore
+--
+
+ALTER TABLE ONLY physicianvisit ALTER COLUMN id SET DEFAULT nextval('physicianvisit_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: clinicore
+--
+
+ALTER TABLE ONLY prac_auth_identity ALTER COLUMN id SET DEFAULT nextval('prac_auth_identity_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: clinicore
+--
+
+ALTER TABLE ONLY prac_auth_info ALTER COLUMN id SET DEFAULT nextval('prac_auth_info_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: clinicore
+--
+
+ALTER TABLE ONLY prac_auth_token ALTER COLUMN id SET DEFAULT nextval('prac_auth_token_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: clinicore
+--
+
+ALTER TABLE ONLY practice ALTER COLUMN id SET DEFAULT nextval('practice_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: clinicore
+--
+
+ALTER TABLE ONLY referral ALTER COLUMN id SET DEFAULT nextval('referral_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: clinicore
+--
+
+ALTER TABLE ONLY report ALTER COLUMN id SET DEFAULT nextval('report_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: clinicore
+--
+
+ALTER TABLE ONLY shiftnote ALTER COLUMN id SET DEFAULT nextval('shiftnote_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: clinicore
+--
+
+ALTER TABLE ONLY sleepstudy ALTER COLUMN id SET DEFAULT nextval('sleepstudy_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: clinicore
+--
+
+ALTER TABLE ONLY studytype ALTER COLUMN id SET DEFAULT nextval('studytype_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: clinicore
+--
+
+ALTER TABLE ONLY "user" ALTER COLUMN id SET DEFAULT nextval('user_id_seq'::regclass);
+
+
+--
+-- Data for Name: attachment; Type: TABLE DATA; Schema: public; Owner: clinicore
+--
+
+COPY attachment (id, version, created_at, updated_at, att_filename, temp_ref, att_id, att_mime, pt_id) FROM stdin;
+\.
+
+
+--
+-- Name: attachment_id_seq; Type: SEQUENCE SET; Schema: public; Owner: clinicore
+--
+
+SELECT pg_catalog.setval('attachment_id_seq', 1, false);
+
+
+--
+-- Data for Name: auth_identity; Type: TABLE DATA; Schema: public; Owner: clinicore
+--
+
+COPY auth_identity (id, version, auth_info_id, provider, identity) FROM stdin;
+1	0	1	loginname	statstaff
+\.
+
+
+--
+-- Name: auth_identity_id_seq; Type: SEQUENCE SET; Schema: public; Owner: clinicore
+--
+
+SELECT pg_catalog.setval('auth_identity_id_seq', 1, true);
+
+
+--
+-- Data for Name: auth_info; Type: TABLE DATA; Schema: public; Owner: clinicore
+--
+
+COPY auth_info (id, version, user_id, password_hash, password_method, password_salt, status, failed_login_attempts, last_login_attempt, email, unverified_email, email_token, email_token_expires, email_token_role) FROM stdin;
+1	0	\N	$2y$07$X1PQYkDCJibjKiTTSSrYRuTjz6Dr.0sUPYduuPsJoT5J/STZvKQnq	bcrypt	gtRjaD.Ge2EUQKZO	1	0	\N		staff@statsleep.com	bbeo1Ft7PKn2RFdfX7NXBw==	2016-04-18 23:57:59.341217	0
+\.
+
+
+--
+-- Name: auth_info_id_seq; Type: SEQUENCE SET; Schema: public; Owner: clinicore
+--
+
+SELECT pg_catalog.setval('auth_info_id_seq', 1, true);
+
+
+--
+-- Data for Name: auth_token; Type: TABLE DATA; Schema: public; Owner: clinicore
+--
+
+COPY auth_token (id, version, auth_info_id, value, expires) FROM stdin;
+\.
+
+
+--
+-- Name: auth_token_id_seq; Type: SEQUENCE SET; Schema: public; Owner: clinicore
+--
+
+SELECT pg_catalog.setval('auth_token_id_seq', 1, false);
+
+
+--
+-- Data for Name: backup; Type: TABLE DATA; Schema: public; Owner: clinicore
+--
+
+COPY backup (id, version, created_at, updated_at, pt_first, pt_last, pt_home, pt_cell, pt_dob, pt_id, pref_loco, bu_id) FROM stdin;
+\.
+
+
+--
+-- Name: backup_id_seq; Type: SEQUENCE SET; Schema: public; Owner: clinicore
+--
+
+SELECT pg_catalog.setval('backup_id_seq', 1, false);
+
+
+--
+-- Data for Name: comment; Type: TABLE DATA; Schema: public; Owner: clinicore
+--
+
+COPY comment (id, version, created_at, updated_at, staff_email, backup_id, pt_id, comment, pt_firstname) FROM stdin;
+\.
+
+
+--
+-- Name: comment_id_seq; Type: SEQUENCE SET; Schema: public; Owner: clinicore
+--
+
+SELECT pg_catalog.setval('comment_id_seq', 1, false);
+
+
+--
+-- Data for Name: composite; Type: TABLE DATA; Schema: public; Owner: clinicore
+--
+
+COPY composite (id, version, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Name: composite_id_seq; Type: SEQUENCE SET; Schema: public; Owner: clinicore
+--
+
+SELECT pg_catalog.setval('composite_id_seq', 1, false);
+
+
+--
+-- Data for Name: insurance; Type: TABLE DATA; Schema: public; Owner: clinicore
+--
+
+COPY insurance (id, version, created_at, updated_at, ins_name, ins_id) FROM stdin;
+\.
+
+
+--
+-- Name: insurance_id_seq; Type: SEQUENCE SET; Schema: public; Owner: clinicore
+--
+
+SELECT pg_catalog.setval('insurance_id_seq', 1, false);
+
+
+--
+-- Data for Name: locality; Type: TABLE DATA; Schema: public; Owner: clinicore
+--
+
+COPY locality (id, version, created_at, updated_at, local_name, local_state, local_id) FROM stdin;
+\.
+
+
+--
+-- Name: locality_id_seq; Type: SEQUENCE SET; Schema: public; Owner: clinicore
+--
+
+SELECT pg_catalog.setval('locality_id_seq', 1, false);
+
+
+--
+-- Data for Name: order; Type: TABLE DATA; Schema: public; Owner: clinicore
+--
+
+COPY "order" (id, version, created_at, updated_at, prac_name, prac_drfirst, prac_drlast, prac_email, rep_at, report_id) FROM stdin;
+\.
+
+
+--
+-- Name: order_id_seq; Type: SEQUENCE SET; Schema: public; Owner: clinicore
+--
+
+SELECT pg_catalog.setval('order_id_seq', 1, false);
+
+
+--
+-- Data for Name: patient; Type: TABLE DATA; Schema: public; Owner: clinicore
+--
+
+COPY patient (id, version, created_at, updated_at, pt_first, pt_last, pt_addr1, pt_addr2, pt_city, pt_zip, pt_home, pt_cell, pt_email, pt_dob, pt_gender, pt_id, num_reschedule, pt_insid, pt_insname, ref_id, prac_id) FROM stdin;
+\.
+
+
+--
+-- Name: patient_id_seq; Type: SEQUENCE SET; Schema: public; Owner: clinicore
+--
+
+SELECT pg_catalog.setval('patient_id_seq', 1, false);
+
+
+--
+-- Data for Name: physicianissue; Type: TABLE DATA; Schema: public; Owner: clinicore
+--
+
+COPY physicianissue (id, version, created_at, updated_at, date_reported, date_resolved, pcc_name, md_name, md_phone, title, description, status, action_taken, issue_id, prac_id, visit_id, pcc_id) FROM stdin;
+\.
+
+
+--
+-- Name: physicianissue_id_seq; Type: SEQUENCE SET; Schema: public; Owner: clinicore
+--
+
+SELECT pg_catalog.setval('physicianissue_id_seq', 1, false);
+
+
+--
+-- Data for Name: physicianvisit; Type: TABLE DATA; Schema: public; Owner: clinicore
+--
+
+COPY physicianvisit (id, version, created_at, updated_at, visit_start, visit_end, this_visit_dt, next_visit_dt, pcc_name, visit_issues, prac_name, visit_reason, visit_outcome, prac_manager, visit_id, prac_id, pcc_id) FROM stdin;
+\.
+
+
+--
+-- Name: physicianvisit_id_seq; Type: SEQUENCE SET; Schema: public; Owner: clinicore
+--
+
+SELECT pg_catalog.setval('physicianvisit_id_seq', 1, false);
+
+
+--
+-- Data for Name: prac_auth_identity; Type: TABLE DATA; Schema: public; Owner: clinicore
+--
+
+COPY prac_auth_identity (id, version, prac_auth_info_id, provider, identity) FROM stdin;
+\.
+
+
+--
+-- Name: prac_auth_identity_id_seq; Type: SEQUENCE SET; Schema: public; Owner: clinicore
+--
+
+SELECT pg_catalog.setval('prac_auth_identity_id_seq', 1, false);
+
+
+--
+-- Data for Name: prac_auth_info; Type: TABLE DATA; Schema: public; Owner: clinicore
+--
+
+COPY prac_auth_info (id, version, user_id, password_hash, password_method, password_salt, status, failed_login_attempts, last_login_attempt, email, unverified_email, email_token, email_token_expires, email_token_role) FROM stdin;
+\.
+
+
+--
+-- Name: prac_auth_info_id_seq; Type: SEQUENCE SET; Schema: public; Owner: clinicore
+--
+
+SELECT pg_catalog.setval('prac_auth_info_id_seq', 1, false);
+
+
+--
+-- Data for Name: prac_auth_token; Type: TABLE DATA; Schema: public; Owner: clinicore
+--
+
+COPY prac_auth_token (id, version, prac_auth_info_id, value, expires) FROM stdin;
+\.
+
+
+--
+-- Name: prac_auth_token_id_seq; Type: SEQUENCE SET; Schema: public; Owner: clinicore
+--
+
+SELECT pg_catalog.setval('prac_auth_token_id_seq', 1, false);
+
+
+--
+-- Data for Name: practice; Type: TABLE DATA; Schema: public; Owner: clinicore
+--
+
+COPY practice (id, version, prac_name, prac_zip, prac_drfirst, prac_drlast, prac_npi, prac_email, prac_specialty, prac_opt, clinicore_account, pcc_email, local_name, local_id, date_added, is_group, group_id, prac_id) FROM stdin;
+\.
+
+
+--
+-- Name: practice_id_seq; Type: SEQUENCE SET; Schema: public; Owner: clinicore
+--
+
+SELECT pg_catalog.setval('practice_id_seq', 1, false);
+
+
+--
+-- Data for Name: referral; Type: TABLE DATA; Schema: public; Owner: clinicore
+--
+
+COPY referral (id, version, created_at, updated_at, prac_name, prac_zip, dr_first, dr_last, prac_npi, prac_email, prac_specialty, prac_id, pt_firstname, pt_lastname, pt_addr1, pt_addr2, pt_city, pt_zip, pt_homephone, pt_cellphone, pt_email, pt_dob, pt_four, pt_gender, study_diag, study_overnight, study_hst, study_other, study_auth, ref_id, pt_id, enter_fullname, enter_email, inbound_status, insurance_id, insurance_name, ref_received, auth_expires, ref_status, study_date, study_time, std_type_id, std_type_name, std_type_code, study_loco) FROM stdin;
+\.
+
+
+--
+-- Name: referral_id_seq; Type: SEQUENCE SET; Schema: public; Owner: clinicore
+--
+
+SELECT pg_catalog.setval('referral_id_seq', 1, false);
+
+
+--
+-- Data for Name: report; Type: TABLE DATA; Schema: public; Owner: clinicore
+--
+
+COPY report (id, version, created_at, updated_at, prac_name, prac_drfirst, prac_drlast, prac_email, pt_firstname, pt_lastname, pt_dob, staff_name, report_id) FROM stdin;
+\.
+
+
+--
+-- Name: report_id_seq; Type: SEQUENCE SET; Schema: public; Owner: clinicore
+--
+
+SELECT pg_catalog.setval('report_id_seq', 1, false);
+
+
+--
+-- Data for Name: shiftnote; Type: TABLE DATA; Schema: public; Owner: clinicore
+--
+
+COPY shiftnote (id, version, created_at, updated_at, emp_email, shift_loc, note_sent, note_body, note_id) FROM stdin;
+1	0	2016-04-15 23:58:07.883471	2016-04-15 23:58:07.88361	staff@statsleep.com	Downey	2016-04-15 23:58:07.88348	fwqwefw wfwfwff	47947992-601d-4a58-a08b-0453aaea5b20
+\.
+
+
+--
+-- Name: shiftnote_id_seq; Type: SEQUENCE SET; Schema: public; Owner: clinicore
+--
+
+SELECT pg_catalog.setval('shiftnote_id_seq', 1, true);
+
+
+--
+-- Data for Name: sleepstudy; Type: TABLE DATA; Schema: public; Owner: clinicore
+--
+
+COPY sleepstudy (id, version, created_at, updated_at, pt_first, pt_last, pt_addr1, pt_addr2, pt_city, pt_zip, pt_home, pt_cell, pt_email, pt_dob, pt_gender, std_diag, std_over, std_other, std_home, std_auth, std_status, appt_status, std_date, std_time, std_type_id, std_type_name, std_type_code, std_loco, bed_number, std_id, ref_id, prac_id, in_id, pt_id) FROM stdin;
+\.
+
+
+--
+-- Name: sleepstudy_id_seq; Type: SEQUENCE SET; Schema: public; Owner: clinicore
+--
+
+SELECT pg_catalog.setval('sleepstudy_id_seq', 1, false);
+
+
+--
+-- Data for Name: studytype; Type: TABLE DATA; Schema: public; Owner: clinicore
+--
+
+COPY studytype (id, version, created_at, updated_at, st_type_name, st_type_code, st_type_id) FROM stdin;
+\.
+
+
+--
+-- Name: studytype_id_seq; Type: SEQUENCE SET; Schema: public; Owner: clinicore
+--
+
+SELECT pg_catalog.setval('studytype_id_seq', 1, false);
+
+
+--
+-- Data for Name: user; Type: TABLE DATA; Schema: public; Owner: clinicore
+--
+
+COPY "user" (id, version) FROM stdin;
+\.
+
+
+--
+-- Name: user_id_seq; Type: SEQUENCE SET; Schema: public; Owner: clinicore
+--
+
+SELECT pg_catalog.setval('user_id_seq', 1, false);
+
+
+--
+-- Name: attachment_pkey; Type: CONSTRAINT; Schema: public; Owner: clinicore; Tablespace: 
+--
+
+ALTER TABLE ONLY attachment
+    ADD CONSTRAINT attachment_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auth_identity_pkey; Type: CONSTRAINT; Schema: public; Owner: clinicore; Tablespace: 
+--
+
+ALTER TABLE ONLY auth_identity
+    ADD CONSTRAINT auth_identity_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auth_info_pkey; Type: CONSTRAINT; Schema: public; Owner: clinicore; Tablespace: 
+--
+
+ALTER TABLE ONLY auth_info
+    ADD CONSTRAINT auth_info_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auth_token_pkey; Type: CONSTRAINT; Schema: public; Owner: clinicore; Tablespace: 
+--
+
+ALTER TABLE ONLY auth_token
+    ADD CONSTRAINT auth_token_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: backup_pkey; Type: CONSTRAINT; Schema: public; Owner: clinicore; Tablespace: 
+--
+
+ALTER TABLE ONLY backup
+    ADD CONSTRAINT backup_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: comment_pkey; Type: CONSTRAINT; Schema: public; Owner: clinicore; Tablespace: 
+--
+
+ALTER TABLE ONLY comment
+    ADD CONSTRAINT comment_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: composite_pkey; Type: CONSTRAINT; Schema: public; Owner: clinicore; Tablespace: 
+--
+
+ALTER TABLE ONLY composite
+    ADD CONSTRAINT composite_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: insurance_pkey; Type: CONSTRAINT; Schema: public; Owner: clinicore; Tablespace: 
+--
+
+ALTER TABLE ONLY insurance
+    ADD CONSTRAINT insurance_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: locality_pkey; Type: CONSTRAINT; Schema: public; Owner: clinicore; Tablespace: 
+--
+
+ALTER TABLE ONLY locality
+    ADD CONSTRAINT locality_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: order_pkey; Type: CONSTRAINT; Schema: public; Owner: clinicore; Tablespace: 
+--
+
+ALTER TABLE ONLY "order"
+    ADD CONSTRAINT order_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: patient_pkey; Type: CONSTRAINT; Schema: public; Owner: clinicore; Tablespace: 
+--
+
+ALTER TABLE ONLY patient
+    ADD CONSTRAINT patient_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: physicianissue_pkey; Type: CONSTRAINT; Schema: public; Owner: clinicore; Tablespace: 
+--
+
+ALTER TABLE ONLY physicianissue
+    ADD CONSTRAINT physicianissue_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: physicianvisit_pkey; Type: CONSTRAINT; Schema: public; Owner: clinicore; Tablespace: 
+--
+
+ALTER TABLE ONLY physicianvisit
+    ADD CONSTRAINT physicianvisit_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: prac_auth_identity_pkey; Type: CONSTRAINT; Schema: public; Owner: clinicore; Tablespace: 
+--
+
+ALTER TABLE ONLY prac_auth_identity
+    ADD CONSTRAINT prac_auth_identity_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: prac_auth_info_pkey; Type: CONSTRAINT; Schema: public; Owner: clinicore; Tablespace: 
+--
+
+ALTER TABLE ONLY prac_auth_info
+    ADD CONSTRAINT prac_auth_info_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: prac_auth_token_pkey; Type: CONSTRAINT; Schema: public; Owner: clinicore; Tablespace: 
+--
+
+ALTER TABLE ONLY prac_auth_token
+    ADD CONSTRAINT prac_auth_token_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: practice_pkey; Type: CONSTRAINT; Schema: public; Owner: clinicore; Tablespace: 
+--
+
+ALTER TABLE ONLY practice
+    ADD CONSTRAINT practice_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: referral_pkey; Type: CONSTRAINT; Schema: public; Owner: clinicore; Tablespace: 
+--
+
+ALTER TABLE ONLY referral
+    ADD CONSTRAINT referral_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: report_pkey; Type: CONSTRAINT; Schema: public; Owner: clinicore; Tablespace: 
+--
+
+ALTER TABLE ONLY report
+    ADD CONSTRAINT report_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: shiftnote_pkey; Type: CONSTRAINT; Schema: public; Owner: clinicore; Tablespace: 
+--
+
+ALTER TABLE ONLY shiftnote
+    ADD CONSTRAINT shiftnote_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: sleepstudy_pkey; Type: CONSTRAINT; Schema: public; Owner: clinicore; Tablespace: 
+--
+
+ALTER TABLE ONLY sleepstudy
+    ADD CONSTRAINT sleepstudy_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: studytype_pkey; Type: CONSTRAINT; Schema: public; Owner: clinicore; Tablespace: 
+--
+
+ALTER TABLE ONLY studytype
+    ADD CONSTRAINT studytype_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: user_pkey; Type: CONSTRAINT; Schema: public; Owner: clinicore; Tablespace: 
+--
+
+ALTER TABLE ONLY "user"
+    ADD CONSTRAINT user_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: fk_auth_identity_auth_info; Type: FK CONSTRAINT; Schema: public; Owner: clinicore
+--
+
+ALTER TABLE ONLY auth_identity
+    ADD CONSTRAINT fk_auth_identity_auth_info FOREIGN KEY (auth_info_id) REFERENCES auth_info(id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: fk_auth_info_user; Type: FK CONSTRAINT; Schema: public; Owner: clinicore
+--
+
+ALTER TABLE ONLY auth_info
+    ADD CONSTRAINT fk_auth_info_user FOREIGN KEY (user_id) REFERENCES "user"(id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: fk_auth_token_auth_info; Type: FK CONSTRAINT; Schema: public; Owner: clinicore
+--
+
+ALTER TABLE ONLY auth_token
+    ADD CONSTRAINT fk_auth_token_auth_info FOREIGN KEY (auth_info_id) REFERENCES auth_info(id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: fk_prac_auth_identity_prac_auth_info; Type: FK CONSTRAINT; Schema: public; Owner: clinicore
+--
+
+ALTER TABLE ONLY prac_auth_identity
+    ADD CONSTRAINT fk_prac_auth_identity_prac_auth_info FOREIGN KEY (prac_auth_info_id) REFERENCES prac_auth_info(id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: fk_prac_auth_info_user; Type: FK CONSTRAINT; Schema: public; Owner: clinicore
+--
+
+ALTER TABLE ONLY prac_auth_info
+    ADD CONSTRAINT fk_prac_auth_info_user FOREIGN KEY (user_id) REFERENCES practice(id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: fk_prac_auth_token_prac_auth_info; Type: FK CONSTRAINT; Schema: public; Owner: clinicore
+--
+
+ALTER TABLE ONLY prac_auth_token
+    ADD CONSTRAINT fk_prac_auth_token_prac_auth_info FOREIGN KEY (prac_auth_info_id) REFERENCES prac_auth_info(id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: public; Type: ACL; Schema: -; Owner: postgres
+--
+
+REVOKE ALL ON SCHEMA public FROM PUBLIC;
+REVOKE ALL ON SCHEMA public FROM postgres;
+GRANT ALL ON SCHEMA public TO postgres;
+GRANT ALL ON SCHEMA public TO PUBLIC;
+
+
+--
+-- PostgreSQL database dump complete
+--
+

@@ -1,0 +1,93 @@
+Wt::WContainerWidget *insuranceGroupContainer = new Wt::WContainerWidget();
+
+Wt::WLabel *lblInsuranceGroup = new Wt::WLabel("Insurance Group:");
+lblGroup->setStyleClass("sig-lbl");
+Wt::WText *out = new Wt::WText();
+
+Wt::WHBoxLayout *insuranceGrouphbox = new Wt::WHBoxLayout();
+insuranceGrouphbox->addWidget(lblInsuranceGroup);
+insuranceGrouphbox->addWidget(new Wt::WBreak());
+insuranceGrouphbox->addWidget(out);
+insuranceGrouphbox->addWidget(new Wt::WBreak());
+
+dbo::Transaction instrans(dbsession);
+
+typedef dbo::collection< dbo::ptr<InsuranceGroup> > Groups;
+Groups groups = dbsession.find<InsuranceGroup>();
+std::cerr << groups.size() << std::endl;
+
+std::vector<InsuranceGroupItem> groupitems;
+
+for (Groups::const_iterator i = groups.begin(); i != groups.end(); ++i)
+{
+
+    Wt::WString name = (*i)->groupName_;
+    Wt::WString id = (*i)->groupId_;
+
+    InsuranceGroupItem *e = new InsuranceGroupItem();
+    e->groupName = name;
+    e->groupId = id;
+
+    groupitems.push_back(*e);
+
+}
+log("notice") << "Current Number of insuranceGroup items "<< groupitems.size();
+
+instrans.commit();
+
+
+Wt::WComboBox *cbinsuranceGroup = new Wt::WComboBox();
+cbinsuranceGroup->setStyleClass("sig-left-box");
+Wt::WText *groupout = new Wt::WText();
+cbinsuranceGroup->addItem("");
+
+for (std::vector<GroupItem>::const_iterator ev = groupitems.begin(); ev != groupitems.end(); ++ev)
+{
+    cbinsuranceGroup->addItem(ev->groupName);
+}
+
+cbinsuranceGroup->changed().connect(std::bind([=] () {
+
+      GroupItem selected;
+
+      for (std::vector<GroupItem>::const_iterator ev = localitems.begin(); ev != localitems.end(); ++ev)
+    {
+        Wt::WString cbname;
+        cbname = cbinsuranceGroup->currentText();
+
+        if (ev->localName == cbname)
+        {
+            selected = *ev;
+        }
+    }
+    if (selected.groupName_ != "")
+    {
+        Wt::WString groupId;
+        Wt::WString groupName;
+
+        groupId = selected.groupId_;
+        groupName = selected.groupName_;
+
+        //save insuranceGroup change to practice
+        dbo::Transaction ptrans(dbsession);
+
+        dbo::ptr<Insurance> pat = dbsession.find<Insurance>().where("ins_id = ?").bind(ins.toUTF8());
+
+        pat.modify()->insuranceGroupId_ = groupId.toUTF8();
+
+        ptrans.commit();
+        out->setText(groupName);
+
+    } else {
+        log("notice") << "Selected: No Group";
+    }
+
+}));
+
+cbinsuranceGroup->setCurrentIndex(0);
+cbinsuranceGroup->setMargin(10, Wt::Right);
+
+insuranceGrouphbox->addWidget(cbinsuranceGroup);
+insuranceGroupContainer->setLayout(insuranceGrouphbox);
+
+container->addWidget(insuranceGroupContainer);

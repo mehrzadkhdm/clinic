@@ -1,0 +1,14 @@
+[
+    {
+        "name": "startTransfer",
+        "params": { 
+            "bedNumber": "num",
+            "clinicoreId": "id",
+            "location": "loc"
+        },
+        "returns" : "Transfer Started"
+    },
+    {
+        "name" : "notifyServer"
+    }
+]

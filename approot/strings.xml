@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<messages>
+  <message id="practice-name-info">Doctorson Nerology Associates, Inc</message>
+  <message id="practice-zip-info">90814</message>
+  <message id="practice-drfirstname-info">John</message>
+  <message id="practice-drlastname-info">Doctorson</message>
+  <message id="practice-npi-info">1234567890</message>
+  <message id="practice-email-info">john@doctorsoninc.com</message>
+  <message id="practice-specialty-info">Neurology</message>
+  <message id="patient.referral.demographics.label">Patient Demographics</message>
+  <message id="patient.referral.first_name">Patient First Name</message>
+  <message id="patient.referral.last_name">Patient Last Name</message>
+  <message id="patient.referral.address1">Patient Address Line 1</message>
+  <message id="patient.referral.address2">Patient Address Line 2</message>
+  <message id="patient.referral.city">Patient City</message>
+  <message id="patient.referral.zipcode">Patient Zip Code</message>
+  <message id="patient.referral.home_phone">Patient Home Phone</message>
+  <message id="patient.referral.cell_phone">Patient Cell Phone</message>
+  <message id="patient.referral.dob">Patient Date of Birth (Example: 02/01/1975)</message>
+  <message id="patient.referral.gender.label">Patient Gender</message>
+  <message id="patient.referral.gender.male">Male</message>
+  <message id="patient.referral.gender.female">Female</message>
+  <message id="patient.referral.gender.other">Other</message>
+  <message id="patient.referral.gender.unspecified">Unspecified</message>
+  <message id="patient.referral.diagnosis.group.label">Diagnosis</message>
+  <message id="patient.referral.diagnosis.apnea">Apnea Events</message>
+  <message id="patient.referral.diagnosis.fatigue">Chronic Fatigue</message>
+  <message id="patient.referral.diagnosis.seizures">Seizures</message>
+  <message id="patient.referral.diagnosis.insomnia">Insomnia</message>
+  <message id="patient.referral.diagnosis.narcolepsy">Narcolepsy</message>
+  <message id="patient.referral.diagnosis.restless_legs">Restless Legs</message>
+  <message id="patient.referral.diagnosis.other">Other Diagnosis</message>
+  <message id="patient.referral.procedure.overnight.group.label">Overnight Sleep Tests</message>
+  <message id="patient.referral.procedure.overnight.group.blurb">Check all that apply</message>
+  <message id="patient.referral.procedure.overnight.complete">Complete Study(PSG &amp; CPAP Titration Studies)</message>
+  <message id="patient.referral.procedure.overnight.psg">95810 - PSG Sleep Test</message>
+  <message id="patient.referral.procedure.overnight.cpap">95811 - CPAP Titration</message>
+  <message id="patient.referral.procedure.overnight.split">95811 - Split Study</message>
+  <message id="patient.referral.procedure.other.group.label">Other Sleep Tests</message>
+  <message id="patient.referral.procedure.other.papnap">95807-52 - PAP NAP (Ideal for non-compliant CPAP users)</message>
+  <message id="patient.referral.procedure.other.mslt_mwt">95805 - MSLT(Multiple Sleep Lantency Test), MWT(Maintenance of Wakefulness Test)</message>
+  <message id="patient.referral.procedure.other.mwt">95805 - MWT(Maintenance of Wakefulness Test)</message>
+  <message id="patient.referral.procedure.other.siezure_study">95810 + 95827 - Seizure Montage Study (Checks for nocturnal seizures and parasomnias)</message>
+  <message id="patient.referral.procedure.other.hst">95800 - Home Sleep Test</message>
+  <message id="patient.referral.authorize">Authorize Consultation for Sleep Disorders</message>
+  <message id="patient.referral.submit.button">Continue</message>
+  <message id="patient.referral.review.diagnosis.apnea">Sleep Apnea, </message>
+  <message id="patient.referral.review.diagnosis.fatigue">Chronic Fatigue, </message>
+  <message id="patient.referral.review.diagnosis.seizures">Seizures, </message>
+  <message id="patient.referral.review.diagnosis.insomnia">Insomnia, </message>
+  <message id="patient.referral.review.diagnosis.narcolepsy">Narcolepsy, </message>
+  <message id="patient.referral.review.diagnosis.restless_legs">Restless Legs, </message>
+  <message id="patient.referral.review.diagnosis.other">Other Diagnosis: </message>
+  <message id="patient.referral.review.overnight.complete">CPAP Titration, </message>
+  <message id="patient.referral.review.overnight.psg">95810 - PSG Only, </message>
+  <message id="patient.referral.review.overnight.cpap">95811 - CPAP Titration Only, </message>
+  <message id="patient.referral.review.overnight.split">95811 - Split Study, </message>
+  <message id="patient.referral.review.other.papnap">95807-52 - Pap Nap, </message>
+  <message id="patient.referral.review.other.mslt_mwt">95805 - MSLT (Multiple Sleep Lantency Test), </message>
+  <message id="patient.referral.review.other.mwt">95805 - MWT (Maintenance of Wakefulness Test), </message>
+  <message id="patient.referral.review.other.seizure_study">95810 + 95827 - Seizure Montage Study, </message>
+  
+  <message id="Wt.Auth.confirmmail.subject">United STAT Sleep Account Activation Link</message>
+
+  <message id="Wt.Auth.confirmmail.body">
+    Hello {1},
+
+    Thank you for signing up for an account at United STAT Sleep!
+
+    To complete your registration, please confirm your account by
+    clicking on the following link or copying the URL into your browser.
+     
+    Please click here to confirm your registration or copy and paste the
+    following URL into your browser: (Note: be sure to copy the entire
+    URL, including any part of it which goes onto a second line.)
+
+    {3}
+
+  </message>
+
+  <message id="Wt.Auth.confirmmail.htmlbody">
+    <h3>Hello {1},</h3>
+
+    <p>Thank you for signing up for an account at United STAT Sleep!</p>
+
+    <p>To complete your registration, please confirm your
+    account by clicking on the following link or copying the URL into
+    your browser.</p>
+ 
+    <p>Please <a href="{3}">click here to confirm</a> your
+    registration or copy and paste the following URL into your
+    browser: <i>(Note: be sure to copy the entire URL, including any
+    part of it which goes onto a second line.)</i></p>
+    
+    <b>{3}</b>
+
+  </message>
+  <message id="Wt.Auth.lostpasswordmail.subject">Password Reset Instructions</message>
+  <message id="Wt.Auth.lostpasswordmail.htmlbody">
+    <h3>Hello {1},</h3>
+
+    <p>A password reset has been requested for your account at United STAT Sleep.</p>
+
+    <p>If you requested this reset, then choose a new password by clicking
+    on the following link or copying the URL into your browser.</p>
+
+    <p>If you did not request this, you can safely ignore and discard this
+    email. There is no way for a password reset to occur without clicking or copying the link. If you have security concerns, please email us at your earliest convenience: security@statsleep.com</p>
+ 
+    <p>Please <a href="{3}">click here to choose a new password</a> or
+    copy and paste the following URL into your browser: <i>(Note: be
+    sure to copy the entire URL, including any part of it which goes
+    onto a second line.)</i></p>
+    
+    <b>{3}</b>
+
+  </message>
+  <message id="Wt.Auth.lostpasswordmail.body">
+    Hello {1},
+
+    A password reset has been requested for your account at United STAT Sleep.
+
+    If you requested this reset, then choose a new password by clicking
+    on the following link or copying the URL into your browser. 
+    
+    If you did not request this, you can safely ignore and discard this
+    email. There is no way for a password reset to occur without clicking or copying the link. If you have security concerns, please email us at your earliest convenience: security@statsleep.com.
+     
+    Please copy and paste the following URL into your browser: (Note: be
+    sure to copy the entire URL, including any part of it which goes onto
+    a second line.)
+     
+    {3} 
+  </message>
+  <message id="Wt.Auth.lostpassword">Password Reset</message>
+</messages>

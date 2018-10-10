@@ -1,0 +1,11 @@
+dbo::Transaction strans(dbsession);
+
+dbo::ptr<SleepStudy> st = dbsession.find<SleepStudy>().where("std_id = ?").bind(stid);
+
+st.modify()->studyStatus_ = nststatus.toUTF8();
+st.modify()->studyDate_ = dbStudyDateD;
+st.modify()->studyTime_ = dbStudyTime_->text().toUTF8();
+st.modify()->studyLocation_ = dbStudyLocation_->text().toUTF8();
+
+
+strans.commit();

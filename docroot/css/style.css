@@ -1,0 +1,523 @@
+.dob-container {
+	max-width: 200px;
+}
+.ref-received-warning {
+	float: left;
+}
+.ref-report-pracname {
+	font-size: 15px;
+	color: #50708B;
+}
+.ref-report-pracspec {
+	font-size: 15px;
+	color: #A9A9A9;
+}
+.ref-report-docname {
+	font-size: 18px;
+}
+.ref-report-kaiserdoc {
+	color: #5D99CD;
+	font-size: 17px;
+	font-weight: bold;
+}
+.ref-report-frontdesk {
+
+}
+.ref-report-dateadd {
+
+}
+
+.ref-report-whoadded {
+
+}
+.print-button {
+	margin-left: 10px;
+	margin-bottom: 10px;
+}
+.weekdaybox {
+	margin-top: 15px;
+	text-align: center;
+	margin-bottom: -30px;
+}
+.physician-dialog-visit-table {
+	height: 400px;
+	overflow: scroll !important;
+}
+.row-new-provider {
+	color: #599914 !important;
+}
+.row-auth-thirty {
+	color: #E88D0D !important;
+}
+.row-auth-ten {
+	color: #D2302C !important;
+}
+.row-newyr-provider {
+	color: #E88D0D !important;
+}
+.physician-dialog-issues-table {
+	height: 400px;
+	overflow: scroll !important;
+}
+
+.pcc-next-time {
+	max-height: 20px !important;
+	min-height: 20px !important;
+	margin-top: 0px !important;
+}
+.print-de1 {
+	margin-right: 20px;
+}
+.print-de2 {
+	margin-right: 20px;
+}
+.btn-delete-patient {
+  color: #ffffff;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  background-color: #da4f49;
+  *background-color: #bd362f;
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ee5f5b), to(#bd362f));
+  background-image: -webkit-linear-gradient(top, #ee5f5b, #bd362f);
+  background-image: -o-linear-gradient(top, #ee5f5b, #bd362f);
+  background-image: linear-gradient(to bottom, #ee5f5b, #bd362f);
+  background-image: -moz-linear-gradient(top, #ee5f5b, #bd362f);
+  background-repeat: repeat-x;
+  border-color: #bd362f #bd362f #802420;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  filter: progid:dximagetransform.microsoft.gradient(startColorstr='#ffee5f5b', endColorstr='#ffbd362f', GradientType=0);
+  filter: progid:dximagetransform.microsoft.gradient(enabled=false);
+}
+.del-pt-now-btn {
+  color: #ffffff;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  background-color: #da4f49;
+  *background-color: #bd362f;
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ee5f5b), to(#bd362f));
+  background-image: -webkit-linear-gradient(top, #ee5f5b, #bd362f);
+  background-image: -o-linear-gradient(top, #ee5f5b, #bd362f);
+  background-image: linear-gradient(to bottom, #ee5f5b, #bd362f);
+  background-image: -moz-linear-gradient(top, #ee5f5b, #bd362f);
+  background-repeat: repeat-x;
+  border-color: #bd362f #bd362f #802420;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  filter: progid:dximagetransform.microsoft.gradient(startColorstr='#ffee5f5b', endColorstr='#ffbd362f', GradientType=0);
+  filter: progid:dximagetransform.microsoft.gradient(enabled=false);
+}
+.cal-top-month {
+	color: #BFBE74;
+	font-size: 150%;
+	float: left;
+	padding-right: 10px;
+}
+.cal-top-year {
+	color: #BFBE74;
+	font-size: 150%;
+	float: left;
+	padding-right: 10px;
+}
+.appt-confirmed-heading {
+	color: #6EA5E5;
+	font-size: 110%;
+	float: right;
+	padding-right: 10px;
+
+}
+.appt-unconfirmed-heading {
+	color: #EA8E4D;
+	font-size: 110%;
+	float: right;
+	padding-left: 10px;
+}
+.new-referral-pt-list {
+	max-height: 550px;
+	min-height: 550px;
+	overflow: auto;
+}
+.new-pt-provider-list {
+	max-height: 550px;
+	overflow: auto;
+}
+.provider-list-result {
+	max-height: 550px;
+	overflow: auto;
+}
+.new-pt-add-provider-btn {
+	float: left;
+}
+.modal-body {
+	height: 1000px;
+	overflow-y: none;
+}
+.search-box {
+	min-width: 500px;
+}
+.downey-cal-color {
+	font-size: 125%;
+	color: #7085BF;
+	float: left;
+	padding: 4px 4px 4px 4px;
+
+}
+.cal-event-confirmed {
+	background-color: #6EA5E5;
+}
+.cal-event-unconfirmed {
+	background-color: #EA8E4D;
+}
+.lb-cal-color {
+	font-size: 125%;
+	color: #7085BF;
+	margin-left: 25px;
+	float: left;
+	padding: 4px 4px 4px 4px;
+
+}
+
+.downey-cal-selected {
+	font-size: 125%;
+	font-weight: bold;
+	color: white;
+	background-color: #7085BF;
+	float: left;
+	border: 1px solid black;
+	padding: 4px 4px 4px 4px;
+
+}
+.lb-cal-selected {
+	font-size: 125%;
+	font-weight: bold;
+	color: white;
+	background-color: #7085BF;
+	float: left;
+	margin-left: 25px;
+	border: 1px solid black;
+	padding: 4px 4px 4px 4px;
+
+}
+.week-container {
+	padding: -1px;
+	top: -1px;
+	bottom: -1px;
+}
+.day-container {
+	border: 1px solid black;
+	min-height: 158px;
+	bottom: 0px;
+	top: 0px;
+	left: 0px;
+	right: 0px;
+	display: inline-block;
+	margin: 0px;
+	width: 140px;
+	overflow: auto;
+}
+.day-show {
+	background-color: #d8f2e1;
+}
+.beds-full {
+	background-color: #f2cece ;
+}
+.beds-not-full {
+	background-color: #d8f2e1;
+}
+
+.cal-event-lb {
+	background-color: #7085BF;
+	color: white;
+	margin-right: 1px;
+	margin-left: 1px;
+	margin-top: 1px;
+	margin-bottom: 1px;
+	font-size: 80%;
+}
+.cal-event-dny {
+	background-color: #BFBE74;
+	color: white;
+	margin-right: 1px;
+	margin-left: 1px;
+	margin-top: 1px;
+	margin-bottom: 1px;
+	font-size: 80%;
+}
+.container {
+	width: 1200px;
+}
+.calendar-evcontainer {
+	max-height: 100px;
+	overflow: scroll;
+}
+.Wt-stack {
+	left: 5px;
+	/*min-width: 830px;*/
+}
+
+.Wt-stack.loginStack, .Wt-stack.practice.mainStack {
+    left: inherit;
+    min-width: inherit;
+}
+
+.body {
+	padding-top: 25px;
+}
+.left-menu {
+	max-width: 170px;
+	min-width: 170px;
+}
+.Wt-auth-logged-in {
+    position: relative;
+    margin-left: 1064px;
+	top: -51px;
+}
+.practice-home-container {
+	padding-bottom: 25px;
+}
+.custom-footer {
+	position: fixed;
+	bottom: 0px;
+	left: 0px;
+	right: 0px;
+	width: 100%;
+	height: 25px;
+	background-color: #86a6bd;
+	color: #F5F5F5;
+}
+.custom-header {
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	right: 0px;
+	width: 100%;
+	height: 25px;
+	background-color: #888888;
+	color: #005580;
+    z-index: 100;
+}
+.usc-logo {
+	padding-top: 25px;
+}
+.inside-header {
+	padding-left: 25px;
+	padding-right: 25px;
+	margin-top: 4px;
+	margin-left: auto;
+	margin-right: auto;
+}
+.header-unitedphone {
+	float: right;
+	color: white;
+}
+.footer-copyright {
+	float: left;
+}
+.footer-pes7 {
+	float: right;
+}
+.footer-pes7 > a {
+	color: #F5F5F5;
+}
+.links {
+	padding-bottom: 25px;
+}
+.inside-footer {
+	padding-left: 25px;
+	padding-right: 25px;
+	margin-top: 4px;
+}
+.backup-comments {
+	overflow: scroll;
+	height: 200px;
+}
+.visit-comments {
+	overflow: scroll;
+	height: 400px;
+}
+.tech-study-comments {
+	overflow: scroll;
+	height: 200px;
+}
+.report-outside {
+	min-height: 400px;
+}
+
+.refdiagleft {
+	max-width: 400px;
+}
+.refdiagright {
+	max-width: 400px;
+}
+.btn-insurance {
+	margin-right: 0;
+	max-width: 300px;
+	min-width: 300px;
+}
+.btn-epworth {
+	margin-right: 0;
+	max-width: 300px;
+	min-width: 300px
+}
+.btn-referral {
+	margin-right: 0;
+	max-width: 300px;
+	min-width: 300px;
+}
+.sig-lbl {
+  max-height: 15px;
+}
+.h1 {
+	color: #5F849F;
+}
+.h2 {
+	color: #5F849F;
+}
+.h3 {
+	color: #5F849F;
+}
+.yellow-box {
+    background-color: #ffffb4;
+    border: 1px solid black;
+    margin-bottom: 1ex;
+    margin-top: 1ex;
+}
+.green-box {
+    background-color: #c4ffb4;
+    min-height: 30px;
+    padding: 3px;
+    text-align: center;
+}
+.blue-box {
+    background-color: #65dae8;
+    min-height: 30px;
+    padding: 3px;
+    text-align: center;
+}
+.background-box {
+    background-color: #ececec;
+    margin-top: 1ex;
+    margin-bottom: 1ex;
+}
+.sig-btn {
+  max-height: 55px;
+}
+
+.sig-right-box {
+    min-height: 25px;
+    max-height: 35px;
+    margin-top: 0px;
+    top: 25px;
+}
+.sig-left-box {
+    min-height: 25px;
+    max-height: 35px;
+    max-width: 200px;
+    margin-right: 0;
+    padding: 0px;
+    top: 25px;
+}
+.gendercheck {
+
+}
+.label-left-box {
+    min-height: 5px;
+    max-height: 10px;
+}
+.left-box {
+    max-width: 500px;
+}
+.label-right-box {
+    min-height: 5px;
+    max-height: 10px;
+}
+.right-box {
+	max-width: 500px;
+}
+
+.header-space {
+    padding-top: 85px;
+    padding-bottom: 35px;
+}
+
+.navbar {
+    margin-top: 25px;
+}
+
+.navbar .Wt-auth-logged-in {
+    margin-left: auto;
+    position: inherit;
+}
+
+@media (min-width: 768px) {
+    .sidebar {
+        position: fixed;
+        top: 85px;
+        bottom: 25px;
+        left: 0;
+        z-index: 100;
+        display: block;
+        padding: 0;
+        overflow-x: hidden;
+        overflow-y: auto;
+        background-color: #f5f5f5;
+        border-right: 1px solid #eee;
+        margin: 0;
+    }
+
+    .nav-sidebar > .active > a, .nav-sidebar > .active > a:hover, .nav-sidebar > .active > a:focus {
+        color: #fff;
+        background-color: #428bca;
+    }
+}
+.practice-app-nav-container {
+	margin-top: 5px;
+}
+.practice-app-navbar {
+	min-height: 60px !important;
+}
+.usc-logo-new {
+	float: left;
+	margin-right: 15px;
+}
+.referral-form {
+    max-width: 650px;
+}
+.navbar-fixed-top {
+    z-index: 100;
+}
+.practice {
+	margin-top: 10px;
+}
+.loading-message {
+	color: #5AABDA;
+}
+.physician-num{
+	color: #5AABDA;
+	font-size: 40px;
+	text-align: center;
+}
+.pending-ref-header{
+	color: #888888;
+	font-size: 20px;
+	text-align: center;
+}
+.inprogress-header {
+	color: #888888;
+	font-size: 20px;
+	text-align: center;
+}
+.completed-std-header {
+	color: #888888;
+	font-size: 20px;
+	text-align: center;
+}
+.Wt-auth-login {
+	margin-top: 50px !important;
+}
+.form-actions > p {
+	float: right;
+	margin-right: 40%;
+}
+.btn-report-request {
+	max-width: 150px !important;
+}
+.referral-form-header {
+	margin-bottom: 10px;
+}
